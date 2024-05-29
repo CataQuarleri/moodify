@@ -4,8 +4,9 @@
 import mongoose from 'mongoose';
 
 const postsSchema = new mongoose.Schema({
-    user_id: {
-        type: String,
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User', // Refers to the 'users' collection
         required: true
     },
     mood: {
@@ -16,19 +17,23 @@ const postsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    emoji: {
+        type: String,
+        required: true
+    },
     comments: [{
         text: {
             type: String,
             required: true
         },
-        user_id: {
-            type: String,
-            required: true
+        user: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User' // Refers to the 'users' collection
         },
-        user_name: {
-            type: String,
-            required: true
-        }
+        // user_name: {
+        //     type: String,
+        //     required: true
+        // }
     }]
 });
 

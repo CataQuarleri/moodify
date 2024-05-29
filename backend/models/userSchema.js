@@ -2,11 +2,7 @@
 import mongoose from 'mongoose';
 
 const userSchema = new mongoose.Schema({
-    user_id: {
-        type: Number,
-        required: true,
-        unique: true
-    },
+    // No need to specify user_id field explicitly, MongoDB automatically creates _id
     user_name: {
         type: String,
         required: true,
