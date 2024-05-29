@@ -1,19 +1,23 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-import MainMoodForm from './components/Main/MainMoodForm'
-import MainListPost from './components/Main/MainListPost'
+import './App.css';
+import { Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import Login from './pages/Login';
+import SignUp from './pages/SignUp';
+import MainPage from './pages/MainPage';
+import Navbar from './components/Navbar';
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-    <MainListPost />
-    <MainMoodForm />
-    </>
-  )
+    <div className="h-screen w-full">
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<HomePage />}></Route>
+        <Route path="/login" element={<Login />}></Route>
+        <Route path="/signup" element={<SignUp />}></Route>
+        <Route path="/mainpage" element={<MainPage />}></Route>
+      </Routes>
+    </div>
+  );
 }
 
-export default App
+export default App;

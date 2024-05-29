@@ -1,9 +1,14 @@
-import React from 'react'
+import Navbar from '../components/Navbar';
+import HomeCallToAction from '../components/HomeCallToAction';
+import HomeFeatures from '../components/HomeFeatures';
 
 function HomePage() {
   return (
-    <div>Hello</div>
-  )
+    <div className="w-full">
+      <HomeCallToAction />
+      <HomeFeatures />
+    </div>
+  );
 }
 
-export default HomePage
+export default HomePage;
