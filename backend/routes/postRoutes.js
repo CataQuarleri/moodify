@@ -9,7 +9,7 @@ const router = express.Router()
 router.get('/', getAllPosts)
 
 // create new post
-router.post('/', )
+router.post('/', postNewPost)
 
 //add comment to post
 
