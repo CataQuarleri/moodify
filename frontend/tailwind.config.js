@@ -20,6 +20,10 @@ export default {
           100: '#fec457',
         },
       },
+      fontFamily: {
+        logo: ['Kalam', 'cursive'],
+        primary: ['Montserrat', 'sans-serif'],
+      },
     },
     plugins: [],
   },
