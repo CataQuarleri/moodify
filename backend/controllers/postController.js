@@ -12,7 +12,7 @@ const getAllPosts = async(req, res) =>{
 // update one posts
  const updatePost = async( req, res) =>{
   const { id } = req.params;
-  const { user_id, mood, color, comments } = req.body;
+  const { user_id, mood, color, emoji} = req.body;
 
   if(!mongoose.Types.ObjectId.isValid(id)){
     return res.status(404).json({error: 'no such ID'})
@@ -27,7 +27,7 @@ const getAllPosts = async(req, res) =>{
   
   //create post
   const postNewPost = async(req, res) =>{
-    const { user_id, mood, color, comments } = req.body;
+    const { user_id, mood, color, emoji} = req.body;
 
     let emptyFields = []
     if(user_id){
@@ -42,9 +42,9 @@ const getAllPosts = async(req, res) =>{
       
       emptyFields.push('color')
     }
-    if(comments){
+    if(emoji){
       
-      emptyFields.push('comments')
+      emptyFields.push('emoji')
     }
 
     if(emptyFields.length > 0){
@@ -52,7 +52,7 @@ const getAllPosts = async(req, res) =>{
   }
   try {
     const user_id = req.user_id
-    const newPost = await posts.create({ user_id, mood, color, comments })
+    const newPost = await posts.create({ user_id, mood, color, emoji})
     res.status(200).json(newPost)
   } catch (error) {
     res.status(400).json({error: "can not create new product"})
@@ -72,3 +72,9 @@ const deleteOnePost = async(req, res) =>{
   res.status(200).json( deletePost )
 }
 
+
+//add comments
+
+
+
+module.exports = {getAllPosts, updatePost, postNewPost, deleteOnePost, addCommenttoPost}
