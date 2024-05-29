@@ -2,7 +2,7 @@ import express from 'express'
 // import db from './data/config.js'
 import postRoutes from './routes/postRoutes.js'
 import userRoutes from './routes/userRoutes.js'
-import dotenv from 'dotenv';
+import 'dotenv/config'
 import cors from 'cors'
 //This part is for authentication
 import methodOverride from 'method-override' // Lets you use PUT or DELETE in places where the client doesn't support it
@@ -29,7 +29,7 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-//This creates a session to save JWTs, need the MongoDB URI 
+//This creates a session to save JWTs, need the MongoDB URI in the .env
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
