@@ -1,8 +1,12 @@
-import React from 'react'
+import {Emoji} from 'emoji-picker-react'
 
-function MainPostCard() {
+function MainPostCard({emoji, color, username, description}) {
   return (
-    <div>MainPostCard</div>
+    <div stye={{backgroundColor: {color}}}>
+    <div>{username}</div>
+    <Emoji unified={emoji} />
+    <div>{description}</div>
+    </div>
   )
 }
 
