@@ -74,7 +74,36 @@ const deleteOnePost = async(req, res) =>{
 
 
 //add comments
+const addCommenttoPost = async (req, res) => {
+  try {
+      const postUser= req.params.user;
+      const { text} = req.body;
 
+      if (!text ) {
+          return res.status(400).json({ message: "Please provide text for the comment." });
+      }
+
+      const postComment = await post.find({postUser}).populate('comments.user');
+
+      if (!postComment) {
+          return res.status(404).json({ message: "Post not found." });
+      }
+
+      postComment.comments.push({ text, user });
+      await postComment.save();
+
+      return res.status(200).json({ message: "Comment added successfully.", postComment});
+    } catch (error) {
+      console.error("Error adding comment:", error);
+      return res.status(500).json({ message: "Internal server error." });
+  }
+};
+
+ const seeAllCommentForOnePost = async(req, res) =>{
+
+  const postComment = await posts.find({}).populate('comments.user');
+  res.status(200).json(postComment)
+}
 
 
 module.exports = {getAllPosts, updatePost, postNewPost, deleteOnePost, addCommenttoPost}
