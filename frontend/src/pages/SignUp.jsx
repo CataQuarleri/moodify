@@ -24,7 +24,6 @@ function SignUp() {
             type="email"
             id="email"
             name="email"
-            value={FormData.email}
             onChange={handleChange}
             required
           ></input>
