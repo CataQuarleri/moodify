@@ -3,6 +3,7 @@ const router = express.Router();
 import bcrypt from 'bcrypt' // This encrypts and decrypts data for passwords
 import jwt from 'jsonwebtoken'
 
+
 const jwtSecret = process.env.JWT_SECRET;
 
 //Middleware -Check Login (This is a guard to make sure the user is logged in successfully), use this anywhere authorization is required 
@@ -46,7 +47,7 @@ router.get('/admin', async (req, res) => {
 router.post('/admin', async (req, res) => {
     try {
    const {username, password} = req.body;
-   const user = await User.findOne( {username} ); //We need the data from Tabitha
+   const user = await Users.findOne( {username} ); //We need the data from Tabitha
 
    if(!user) {
     return res.status(401).json({message: 'Invalid credentials'});
@@ -72,12 +73,9 @@ router.post('/admin', async (req, res) => {
 //GET / Admin Dash -Check Login (can't get into the dashboard unless logged in)
 router.get('/dashboard', authMiddleware, async (req, res) => {
     try {
-        const locals = {
-            title: 'Dashboard',
-            description: 'Simple Blog created with NodeJS, Express and MongoDB.'
-        }
+      
 
-        const data = await Post.find();
+        const data = await posts.find();
         res.render('admin/dashboard', {
         //...
         });

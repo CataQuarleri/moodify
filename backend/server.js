@@ -29,13 +29,13 @@ app.use(methodOverride('_method'));
 app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); 
 
-//This creates a session to save JWTs, need the MongoDB URI in the .env
+//This creates a session to save JWTs
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: process.env.MONGODB_URI
+        mongoUrl: process.env.ATLAS_URI
     }),
   
    
