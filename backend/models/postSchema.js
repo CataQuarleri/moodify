@@ -16,10 +16,20 @@ const postsSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    comments: {
-        type: String,
-        required: false
-    }
+    comments: [{
+        text: {
+            type: String,
+            required: true
+        },
+        user_id: {
+            type: String,
+            required: true
+        },
+        user_name: {
+            type: String,
+            required: true
+        }
+    }]
 });
 
 
