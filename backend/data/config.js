@@ -1,15 +1,14 @@
-//
-import mongoose from 'mongoose';
+import mongoose from 'mongoose'
 
-const connectionString = process.env.ATLAS_URI || ""
-
-export default async function connectToDb(){
+const connectDB = async () => {
     try {
-        await mongoose.connect(connectionString);
-        console.log('Connected to MongoDB');
-
-    }  catch (err){
-        console.log(err);
-    } 
-
+        mongoose.set('strictQuery', false);
+        const conn = await mongoose.connect(process.env.ATLAS_URI);
+        console.log(`Database Connected: ${conn.connection.host}`);
+    } catch (error) {
+        console.log(error);
+    }
 }
+
+module.exports = connectDB;
+
