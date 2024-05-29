@@ -99,11 +99,12 @@ const addCommenttoPost = async (req, res) => {
   }
 };
 
- const seeAllCommentForOnePost = async(req, res) =>{
 
+// see all comments
+ const seeAllCommentForOnePost = async(req, res) =>{
   const postComment = await posts.find({}).populate('comments.user');
   res.status(200).json(postComment)
 }
 
 
-module.exports = {getAllPosts, updatePost, postNewPost, deleteOnePost, addCommenttoPost}
+module.exports = {getAllPosts, updatePost, postNewPost, deleteOnePost, addCommenttoPost, seeAllCommentForOnePost}
