@@ -1,4 +1,8 @@
 function SignUp() {
+  const handleChange = (e) => {
+    e.preventDefault();
+    console.log("Form submitted");
+  };
   return (
     <div className="max-w-md mx-auto">
       <h2 className="text-3xl font-bold mb-4">Signup</h2>
