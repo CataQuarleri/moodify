@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 function HomeCallToAction() {
   return (
-    <div className="flex flex-col md:flex-row w-full  items-center md:items-stretch justify-center  gap-2 md:gap-52">
+    <div className="flex flex-col md:flex-row w-full  items-center md:items-stretch justify-center gap-2 md:gap-52">
       <div className="pt-16 flex flex-col gap-4 md:w-3/12 w-10/12">
         <h2 className="text-2xl text-turquoise-100 ">
           Welcome to our mood social media app
