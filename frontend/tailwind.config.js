@@ -1,28 +1,28 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       colors: {
         pink: {
-          100: '#f689ab',
+          100: "#f689ab",
         },
         violet: {
-          100: '#a08cc4',
+          100: "#a08cc4",
         },
         indigo: {
-          100: '#0e3e68',
+          100: "#0e3e68",
         },
         turquoise: {
-          100: '#55cdad',
+          100: "#55cdad",
         },
         yellow: {
-          100: '#fec457',
+          100: "#fec457",
         },
       },
       fontFamily: {
-        logo: ['Kalam', 'cursive'],
-        primary: ['Montserrat', 'sans-serif'],
+        logo: ["Kalam", "cursive"],
+        primary: ["Montserrat", "sans-serif"],
       },
     },
     plugins: [],
