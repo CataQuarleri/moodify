@@ -1,4 +1,5 @@
 import express from 'express'
+
 const router = express.Router();
 import bcrypt from 'bcrypt' // This encrypts and decrypts data for passwords
 import jwt from 'jsonwebtoken'
