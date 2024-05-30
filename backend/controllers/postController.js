@@ -3,7 +3,7 @@ import { Types } from 'mongoose';
 
 // get all posts
 const getAllPosts = async (req, res) => {
-  const posts = await posts.find({});
+  const posts = await Posts.find({});
   res.status(200).json(posts);
 };
 

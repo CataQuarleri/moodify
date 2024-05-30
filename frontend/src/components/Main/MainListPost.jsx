@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import MainPostCard from './MainPostCard'
-const POSTS = ''
+const POSTS = 'https://moodify-server-si3i.onrender.com/api/posts'
 function MainListPost() {
     let [posts, setPosts] = useState([])
  useEffect(()=>{

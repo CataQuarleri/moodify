@@ -1,10 +1,10 @@
-const mongoose = require('mongoose');
-const user = require('../models/userSchema');
+import mongoose from 'mongoose';
+import Users from '../models/userSchema';
 
 const userLogin = async (req, res) => {
   const { email, password } = req.body;
   try {
-    const existingUser = await user.login(email, password);
+    const existingUser = await Users.login(email, password);
     res.status(200).json({ email });
   } catch (error) {
     console.log(error);
@@ -15,7 +15,7 @@ const userLogin = async (req, res) => {
 const userSignup = async (req, res) => {
   const { userName, email, password } = req.body;
   try {
-    const newUser = await user.signup({ userName, email, password });
+    const newUser = await Users.signup({ userName, email, password });
     res.status(200).json({ userName, email, password });
   } catch (error) {
     console.log(error);
@@ -23,4 +23,4 @@ const userSignup = async (req, res) => {
   }
 };
 
-module.exports = { userLogin, userSignup };
+export { userLogin, userSignup };
