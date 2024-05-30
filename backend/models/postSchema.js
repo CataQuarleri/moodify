@@ -1,7 +1,7 @@
 //reference to user (ID), each post has mood (emoji string) and color (hex)
 //check out populate on mongoose
 
-import mongoose from 'mongoose';
+import mongoose  from 'mongoose';
 
 const postsSchema = new mongoose.Schema({
     user: {
@@ -37,5 +37,6 @@ const postsSchema = new mongoose.Schema({
     }]
 });
 
-
-export default mongoose.model('posts', postsSchema);
+const Posts = mongoose.model('posts', postsSchema)
+// export default mongoose.model('posts', postsSchema);
+export default Posts

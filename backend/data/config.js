@@ -1,14 +1,16 @@
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import 'dotenv/config'
 
-const connectDB = async () => {
+const connectionString = process.env.MONGOATLAS_URI
+
+export default async function connectToDb(){
+    console.log("CONNECTION STRING", connectionString)
     try {
-        mongoose.set('strictQuery', false);
-        const conn = await mongoose.connect(process.env.ATLAS_URI);
-        console.log(`Database Connected: ${conn.connection.host}`);
-    } catch (error) {
-        console.log(error);
-    }
+        await mongoose.connect(connectionString);
+        console.log('Connected to MongoDB');
+
+    }  catch (err){
+        console.log(err);
+    } 
+
 }
-
-module.exports = connectDB;
-

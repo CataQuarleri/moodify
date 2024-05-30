@@ -1,5 +1,5 @@
 import express from 'express'
-// import db from './data/config.js'
+import connectToDb from './data/config.js'
 import postRoutes from './routes/postRoutes.js'
 import userRoutes from './routes/userRoutes.js'
 import 'dotenv/config'
@@ -35,13 +35,13 @@ app.use(session({
     resave: false,
     saveUninitialized: true,
     store: MongoStore.create({
-        mongoUrl: process.env.ATLAS_URI
+        mongoUrl: process.env.MONGOATLAS_URI
     }),
   
    
 }))
 
-
+connectToDb()
 
 
 

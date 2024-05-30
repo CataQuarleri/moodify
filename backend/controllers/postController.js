@@ -3,8 +3,17 @@ import { Types } from 'mongoose';
 
 // get all posts
 const getAllPosts = async (req, res) => {
-  const posts = await Posts.find({});
-  res.status(200).json(posts);
+  try {
+    const result = await Posts.find({}).sort({user_id: 1}).limit(10); 
+    console.log('Retrieved posts: ', result);
+    if (!result || result.length === 0) {
+        return res.status(404).send('Not found');
+    }
+    res.send(result).status(200);
+} catch (error){
+    console.error('Error retrieving posts: ', error);
+    res.status(500).send('Internal Server Error')
+}
 };
 
 // update one posts
