@@ -1,5 +1,5 @@
-const posts = require('../models/postSchema');
-const mongoose = require('mongoose');
+import Posts from '../models/postSchema.js';
+import { Types } from 'mongoose';
 
 // get all posts
 const getAllPosts = async (req, res) => {
@@ -12,10 +12,10 @@ const updatePost = async (req, res) => {
   const { id } = req.params;
   const { user_id, mood, color, emoji } = req.body;
 
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  if (!Types.ObjectId.isValid(id)) {
     return res.status(404).json({ error: 'no such ID' });
   }
-  const update = await Products.findByIdAndUpdate(id, { ...req.body });
+  const update = await Posts.findByIdAndUpdate(id, { ...req.body });
   if (!update) {
     return res.status(404).json({ error: 'no such item' });
   }
@@ -27,16 +27,16 @@ const postNewPost = async (req, res) => {
   const { user_id, mood, color, emoji } = req.body;
 
   let emptyFields = [];
-  if (user_id) {
+  if (!user_id) {
     emptyFields.push('user_id');
   }
-  if (mood) {
+  if (!mood) {
     emptyFields.push('mood');
   }
-  if (color) {
+  if (!color) {
     emptyFields.push('color');
   }
-  if (emoji) {
+  if (!emoji) {
     emptyFields.push('emoji');
   }
 
@@ -47,20 +47,20 @@ const postNewPost = async (req, res) => {
   }
   try {
     const user_id = req.user_id;
-    const newPost = await posts.create({ user_id, mood, color, emoji });
+    const newPost = await Posts.create({ user_id, mood, color, emoji });
     res.status(200).json(newPost);
   } catch (error) {
-    res.status(400).json({ error: 'can not create new product' });
+    res.status(400).json({ error: 'can not create new post' });
   }
 };
 
 //delete post
 const deleteOnePost = async (req, res) => {
-  const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
+  const { postId } = req.params;
+  if (!Types.PostId.isValid(postId)) {
     return res.status(404).json({ error: 'no such ID' });
   }
-  const deletePost = await posts.findByIdAndDelete(id);
+  const deletePost = await Posts.findByIdAndDelete(postId);
   if (!deletePost) {
     return res.status(404).json({ error: 'no such post' });
   }
@@ -68,7 +68,7 @@ const deleteOnePost = async (req, res) => {
 };
 
 //add comments
-const addCommenttoPost = async (req, res) => {
+const addCommentToPost = async (req, res) => {
   try {
     const postUser = req.params.user;
     const { text } = req.body;
@@ -79,7 +79,7 @@ const addCommenttoPost = async (req, res) => {
         .json({ message: 'Please provide text for the comment.' });
     }
 
-    const postComment = await post.find({ postUser }).populate('comments.user');
+    const postComment = await Posts.find({ postUser }).populate('comments.user');
 
     if (!postComment) {
       return res.status(404).json({ message: 'Post not found.' });
@@ -98,14 +98,15 @@ const addCommenttoPost = async (req, res) => {
 };
 
 const seeAllCommentForOnePost = async (req, res) => {
-  const postComment = await posts.find({}).populate('comments.user');
+  const postComment = await Posts.find({}).populate('comments.user');
   res.status(200).json(postComment);
 };
 
-module.exports = {
+export {
   getAllPosts,
   updatePost,
   postNewPost,
   deleteOnePost,
-  addCommenttoPost,
+  addCommentToPost,
+  seeAllCommentForOnePost
 };
