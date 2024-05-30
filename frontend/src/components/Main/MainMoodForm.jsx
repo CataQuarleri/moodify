@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import EmojiPicker, {Emoji} from 'emoji-picker-react';
 import axios from 'axios'
 
-const endpoint = ""
+const endpoint = "https://moodify-server-si3i.onrender.com/api/post"
 function MainMoodForm() {
   const [openEmojiPicker, setOpenEmojiPicker] =useState(false)
   const [emoji, setEmoji] = useState('')
-  const [description, setDescription] = useState("")
+  const [mood, setMood] = useState("")
   const [color, setColor] = useState("")
   let body = {
-    user: user,
-    description: description,
+    // user: user,
+    mood: mood,
     color: color,
     emoji: emoji
   }
@@ -38,8 +38,8 @@ function handleSubmit(e){
   return (
     <div>
       <form onSubmit={()=>handleSubmit}>
-      <input type="text" name="description" value={description}
-          onChange={(e) => setDescription(e.target.value)} placeholder="What's your mood today?" />
+      <input type="text" name="mood" value={mood}
+          onChange={(e) => setMood(e.target.value)} placeholder="What's your mood today?" />
       <input type="color" name="color" value={color} onChange={(e) => setColor(e.target.value)}/> <label htmlFor="color">Pick your color</label>
       <div onClick={()=>setOpenEmojiPicker(!openEmojiPicker)}>
         Choose an emoji

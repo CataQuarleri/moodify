@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import MainPostCard from './MainPostCard'
-const POSTS = 'https://moodify-server-si3i.onrender.com/api/posts'
+const POSTS = 'https://moodify-server-si3i.onrender.com/api/post'
 function MainListPost() {
     let [posts, setPosts] = useState([])
  useEffect(()=>{
@@ -21,7 +21,7 @@ function MainListPost() {
   return (
     <>
     {posts.map((onePost, i) => {
-        <MainPostCard key={i} username={onePost.username} emoji={onePost.emoji} color={onePost.color} description={onePost.description}/>
+       return <MainPostCard key={i} username={onePost.user_id} emoji={onePost.emoji} color={onePost.color} description={onePost.mood}/>
     })}
     </>
   )

@@ -1,10 +1,11 @@
 import {Emoji} from 'emoji-picker-react'
 
 function MainPostCard({emoji, color, username, description}) {
+  
   return (
-    <div stye={{backgroundColor: {color}}}>
+    <div stye={{backgroundColor: {color}, width: '200px'}}>
     <div>{username}</div>
-    <Emoji unified={emoji} />
+   {emoji.includes('&#') ? <p>{emoji + ';'}</p> : <Emoji unified={emoji} />}
     <div>{description}</div>
     </div>
   )

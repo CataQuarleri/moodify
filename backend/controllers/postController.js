@@ -4,8 +4,8 @@ import { Types } from 'mongoose';
 // get all posts
 const getAllPosts = async (req, res) => {
   try {
-    const result = await Posts.find({}).sort({user_id: 1}).limit(10); 
-    console.log('Retrieved posts: ', result);
+    console.log("requested to retrieve all posts")
+    const result = await Posts.find({}); 
     if (!result || result.length === 0) {
         return res.status(404).send('Not found');
     }
